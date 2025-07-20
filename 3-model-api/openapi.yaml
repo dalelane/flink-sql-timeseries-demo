@@ -1,0 +1,73 @@
+openapi: 3.0.3
+info:
+  title: Forecast API
+  description: API to forecast user activity based on historical data.
+  version: 1.0.0
+servers:
+  - url: http://timeseries:5000
+paths:
+  /forecast:
+    post:
+      summary: Forecast user activity
+      description: Takes historical data as input and returns forecasted activity counts.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                history:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      dteday:
+                        type: string
+                      season:
+                        type: integer
+                      yr:
+                        type: integer
+                      mnth:
+                        type: integer
+                      hr:
+                        type: integer
+                      holiday:
+                        type: integer
+                      weekday:
+                        type: integer
+                      workingday:
+                        type: integer
+                      weathersit:
+                        type: integer
+                      temp:
+                        type: number
+                      atemp:
+                        type: number
+                      hum:
+                        type: number
+                      windspeed:
+                        type: number
+                      casual:
+                        type: integer
+                      registered:
+                        type: integer
+      responses:
+        '200':
+          description: Forecasted activity counts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  forecast:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        casual:
+                          type: number
+                        cnt:
+                          type: number
+                        registered:
+                          type: number

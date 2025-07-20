@@ -1,0 +1,75 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: timeseries
+  namespace: event-automation
+  labels:
+    app: timeseries
+    app.kubernetes.io/component: timeseries
+    app.kubernetes.io/instance: timeseries
+    app.kubernetes.io/name: timeseries
+    app.kubernetes.io/part-of: timeseries
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timeseries
+  template:
+    metadata:
+      labels:
+        app: timeseries
+        deployment: timeseries
+    spec:
+      containers:
+        - name: timeseries
+          image: 'image-registry.openshift-image-registry.svc:5000/event-automation/timeseriesmodel:1'
+          ports:
+            - containerPort: 5000
+              protocol: TCP
+          resources: {}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: timeseries
+  namespace: event-automation
+  labels:
+    app: timeseries
+    app.kubernetes.io/component: timeseries
+    app.kubernetes.io/instance: timeseries
+    app.kubernetes.io/name: timeseries
+    app.kubernetes.io/part-of: timeseries
+spec:
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: 5000-tcp
+      protocol: TCP
+      port: 5000
+      targetPort: 5000
+  internalTrafficPolicy: Cluster
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: timeseries
+    deployment: timeseries

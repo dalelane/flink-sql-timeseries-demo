@@ -1,0 +1,20 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: bike-sharing
+  namespace: strimzi
+  labels:
+    strimzi.io/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.bikesharing.DatagenSourceConnector
+  config:
+    # string keys
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    # JSON value payloads
+    value.converter: org.apache.kafka.connect.json.JsonConverter
+    value.converter.schemas.enable: false
+    # format to use for timestamp strings
+    formats.timestamps: 'yyyy-MM-dd HH:mm:ss.SSS'
+    # use the original timestamps from the dataset (data from 2011-2012)
+    timestamps.shift: false

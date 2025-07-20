@@ -1,0 +1,142 @@
+{
+  "categorical_columns": [],
+  "categorical_encoder": null,
+  "conditional_columns": [],
+  "context_length": 512,
+  "control_columns": [
+    "season",
+    "yr",
+    "mnth",
+    "holiday",
+    "weekday",
+    "workingday",
+    "weathersit",
+    "temp",
+    "atemp",
+    "hum",
+    "windspeed"
+  ],
+  "encode_categorical": false,
+  "feature_extractor_type": "TimeSeriesPreprocessor",
+  "freq": "0 days 01:00:00",
+  "frequency_mapping": {
+    "10min": 4,
+    "15min": 5,
+    "2min": 2,
+    "30min": 6,
+    "5min": 3,
+    "D": 8,
+    "H": 7,
+    "W": 9,
+    "d": 8,
+    "h": 7,
+    "min": 1,
+    "oov": 0
+  },
+  "id_columns": [],
+  "observable_columns": [],
+  "prediction_length": 96,
+  "processor_class": "TimeSeriesPreprocessor",
+  "scale_categorical_columns": true,
+  "scaler_dict": {
+    "0": {
+      "copy": true,
+      "feature_names_in_": [
+        "season",
+        "yr",
+        "mnth",
+        "holiday",
+        "weekday",
+        "workingday",
+        "weathersit",
+        "temp",
+        "atemp",
+        "hum",
+        "windspeed"
+      ],
+      "mean_": [
+        2.5059270341811484,
+        0.005063873863505582,
+        6.545747496835078,
+        0.029807802969271494,
+        2.9997698239152952,
+        0.680285418345034,
+        1.436298768557947,
+        0.4882587179192083,
+        0.4682576245828058,
+        0.6429451030037979,
+        0.191507975601335
+      ],
+      "n_features_in_": 11,
+      "n_samples_seen_": 8689,
+      "scale_": [
+        1.1078323546107474,
+        0.07098049763843647,
+        3.4420722147154876,
+        0.170056748914639,
+        2.0097013970573046,
+        0.4663659163491218,
+        0.6533456632524149,
+        0.19783549479741966,
+        0.17671101415143134,
+        0.19637599803965075,
+        0.12334290634887189
+      ],
+      "var_": [
+        1.2272925259223926,
+        0.005038231045000087,
+        11.847861131316382,
+        0.028919297851416573,
+        4.0388997053340825,
+        0.21749716793215604,
+        0.426860555690738,
+        0.03913888300173986,
+        0.031226782522427367,
+        0.038563532606068915,
+        0.015213472546586582
+      ],
+      "with_mean": true,
+      "with_std": true
+    }
+  },
+  "scaler_type": "standard",
+  "scaling": true,
+  "scaling_id_columns": [],
+  "static_categorical_columns": [],
+  "target_columns": [
+    "casual",
+    "registered",
+    "cnt"
+  ],
+  "target_scaler_dict": {
+    "0": {
+      "copy": true,
+      "feature_names_in_": [
+        "casual",
+        "registered",
+        "cnt"
+      ],
+      "mean_": [
+        28.561859822764415,
+        114.97698239152952,
+        143.53884221429394
+      ],
+      "n_features_in_": 3,
+      "n_samples_seen_": 8689,
+      "scale_": [
+        38.79085244833454,
+        109.28580407183863,
+        133.6049814709693
+      ],
+      "var_": [
+        1504.730233668462,
+        11943.386971628299,
+        17850.291073858054
+      ],
+      "with_mean": true,
+      "with_std": true
+    }
+  },
+  "time_series_task": "forecasting",
+  "timestamp_column": "dteday"
+}

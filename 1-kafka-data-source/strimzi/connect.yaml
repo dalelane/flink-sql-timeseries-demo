@@ -1,0 +1,56 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  name: kafka-connect-cluster
+  namespace: strimzi
+  annotations:
+    strimzi.io/use-connector-resources: 'true'
+spec:
+  authentication:
+    passwordSecret:
+      password: password
+      secretName: kafka-connect-credentials
+    type: scram-sha-512
+    username: kafka-connect-credentials
+  bootstrapServers: 'my-kafka-cluster-kafka-bootstrap:9095'
+  build:
+    output:
+      image: 'image-registry.openshift-image-registry.svc:5000/strimzi/strimzi-demo:1.0.0'
+      type: docker
+    plugins:
+      - artifacts:
+          - type: jar
+            url: 'https://github.com/dalelane/kafka-connect-bikesharing-source/releases/download/0.0.8/kafka-connect-bikesharing-source-0.0.8-jar-with-dependencies.jar'
+        name: bikesharing
+  config:
+    client.id: kafka-connect-client
+    config.providers: file
+    config.providers.file.class: org.apache.kafka.common.config.provider.DirectoryConfigProvider
+    config.storage.topic: connect-configs
+    group.id: kafka-connect
+    offset.storage.topic: connect-offsets
+    status.storage.topic: connect-status
+  replicas: 1
+  resources:
+    limits:
+      cpu: 1024m
+      memory: 1Gi
+    requests:
+      cpu: 1024m
+      memory: 1Gi
+  template:
+    connectContainer:
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+    pod:
+      imagePullSecrets: []
+  tls:
+    trustedCertificates:
+      - certificate: ca.crt
+        secretName: my-kafka-cluster-cluster-ca-cert

@@ -1,0 +1,69 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnect
+metadata:
+  name: kafka-connect-cluster
+  namespace: event-automation
+  annotations:
+    eventstreams.ibm.com/use-connector-resources: 'true'
+spec:
+  authentication:
+    passwordSecret:
+      password: password
+      secretName: kafka-connect-credentials
+    type: scram-sha-512
+    username: kafka-connect-credentials
+  bootstrapServers: 'my-kafka-cluster-kafka-bootstrap:9095'
+  build:
+    output:
+      image: 'image-registry.openshift-image-registry.svc:5000/event-automation/event-automation-demo:1.0.0'
+      type: docker
+    plugins:
+      - artifacts:
+          - type: jar
+            url: 'https://github.com/dalelane/kafka-connect-bikesharing-source/releases/download/0.0.8/kafka-connect-bikesharing-source-0.0.8-jar-with-dependencies.jar'
+        name: bikesharing
+  config:
+    client.id: kafka-connect-client
+    config.providers: file
+    config.providers.file.class: org.apache.kafka.common.config.provider.DirectoryConfigProvider
+    config.storage.topic: connect-configs
+    group.id: kafka-connect
+    offset.storage.topic: connect-offsets
+    status.storage.topic: connect-status
+  replicas: 1
+  resources:
+    limits:
+      cpu: 1024m
+      memory: 1Gi
+    requests:
+      cpu: 1024m
+      memory: 1Gi
+  template:
+    buildConfig:
+      pullSecret: ibm-entitlement-key
+    connectContainer:
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+    pod:
+      imagePullSecrets: []
+      metadata:
+        annotations:
+          cloudpakId: c8b82d189e7545f0892db9ef2731b90d
+          productVersion: 11.8.1
+          productID: 2a79e49111f44ec3acd89608e56138f5
+          cloudpakName: IBM Cloud Pak for Integration
+          productChargedContainers: kafka-connect-cluster-connect
+          productCloudpakRatio: '2:1'
+          productName: IBM Event Streams for Non Production
+          eventstreams.production.type: CloudPakForIntegrationNonProduction
+          productMetric: VIRTUAL_PROCESSOR_CORE
+  tls:
+    trustedCertificates:
+      - certificate: ca.crt
+        secretName: my-kafka-cluster-cluster-ca-cert

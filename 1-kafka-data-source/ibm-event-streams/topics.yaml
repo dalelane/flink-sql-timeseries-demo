@@ -1,0 +1,31 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: bikesharing-location
+  namespace: event-automation
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '524288000'
+    retention.ms: -1
+  partitions: 1
+  replicas: 3
+  topicName: BIKESHARING.LOCATION
+---
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: bikesharing-weather
+  namespace: event-automation
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '524288000'
+    retention.ms: -1
+  partitions: 1
+  replicas: 3
+  topicName: BIKESHARING.WEATHER

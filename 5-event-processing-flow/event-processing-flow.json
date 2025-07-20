@@ -1,0 +1,1317 @@
+{
+  "pipelineState": {
+    "doc_type": "pipeline",
+    "version": "3.0",
+    "json_schema": "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json",
+    "id": "fa70f0b7-c0d1-4db6-982b-8b01b5fd2eed",
+    "primary_pipeline": "34fa554a-4473-476f-9978-7bab095de6ca",
+    "pipelines": [
+      {
+        "id": "34fa554a-4473-476f-9978-7bab095de6ca",
+        "nodes": [
+          {
+            "id": "5ae23e2b-6c1f-47e2-b6e9-b5a1700f55d7",
+            "type": "source",
+            "app_data": {
+              "node_type": "source",
+              "ui_data": {
+                "label": "weather forecasts",
+                "image": "/images/svg/source.svg",
+                "x_pos": -176.20042991638184,
+                "y_pos": 54.13404083251953
+              }
+            },
+            "outputs": [
+              {
+                "id": "outPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Output Port"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "d061ae26-b72b-4eec-9c91-836e0789c363",
+            "type": "sqlProcessor",
+            "app_data": {
+              "node_type": "sqlProcessor",
+              "ui_data": {
+                "label": "extract time info",
+                "image": "/images/svg/sqlProcessor.svg",
+                "x_pos": 158.90672302246094,
+                "y_pos": 53.81904602050781
+              }
+            },
+            "inputs": [
+              {
+                "id": "inPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Input Port"
+                  }
+                },
+                "links": [
+                  {
+                    "id": "4953c27c-5852-484d-9e26-d6b63eb65708",
+                    "node_id_ref": "5ae23e2b-6c1f-47e2-b6e9-b5a1700f55d7",
+                    "port_id_ref": "outPort"
+                  }
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "id": "outPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Output Port"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "38bb788e-2f33-4800-9210-0a11c3327210",
+            "type": "sqlProcessor",
+            "app_data": {
+              "node_type": "sqlProcessor",
+              "ui_data": {
+                "label": "normalize weather data",
+                "image": "/images/svg/sqlProcessor.svg",
+                "x_pos": 243.79629516601562,
+                "y_pos": 139.53475952148438
+              }
+            },
+            "inputs": [
+              {
+                "id": "inPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Input Port"
+                  }
+                },
+                "links": [
+                  {
+                    "id": "7a28ba50-e44d-41c9-887f-35f3ef32b7e1",
+                    "node_id_ref": "206511cf-5051-4f86-ab3d-45822df62be5",
+                    "port_id_ref": "outPort"
+                  }
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "id": "outPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Output Port"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "206511cf-5051-4f86-ab3d-45822df62be5",
+            "type": "sqlProcessor",
+            "app_data": {
+              "node_type": "sqlProcessor",
+              "ui_data": {
+                "label": "lookup holiday info",
+                "image": "/images/svg/sqlProcessor.svg",
+                "x_pos": -79.06748962402344,
+                "y_pos": 139.43609619140625
+              }
+            },
+            "inputs": [
+              {
+                "id": "inPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Input Port"
+                  }
+                },
+                "links": [
+                  {
+                    "id": "e5c92465-4499-4265-ad00-041899eb4109",
+                    "node_id_ref": "d061ae26-b72b-4eec-9c91-836e0789c363",
+                    "port_id_ref": "outPort"
+                  }
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "id": "outPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Output Port"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "83b13b25-cd16-4a5d-a803-da243b772385",
+            "type": "source",
+            "app_data": {
+              "node_type": "source",
+              "ui_data": {
+                "label": "bike location updates",
+                "image": "/images/svg/source.svg",
+                "x_pos": -169.96188760719312,
+                "y_pos": 242.79955499877929
+              }
+            },
+            "outputs": [
+              {
+                "id": "outPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Output Port"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "f5bd732d-ab2b-4f14-80e8-9e96eb15e777",
+            "type": "sqlProcessor",
+            "app_data": {
+              "node_type": "sqlProcessor",
+              "ui_data": {
+                "label": "count journeys per hour",
+                "image": "/images/svg/sqlProcessor.svg",
+                "x_pos": 580.2664470581053,
+                "y_pos": 242.65569513549804
+              }
+            },
+            "inputs": [
+              {
+                "id": "inPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Input Port"
+                  }
+                },
+                "links": [
+                  {
+                    "id": "b7035b3f-5363-4501-92fb-9380289e25aa",
+                    "node_id_ref": "83b13b25-cd16-4a5d-a803-da243b772385",
+                    "port_id_ref": "outPort"
+                  }
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "id": "outPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Output Port"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "6f0facd7-0a63-4b6a-8ab9-058b6a8a23c6",
+            "type": "sqlProcessor",
+            "app_data": {
+              "node_type": "sqlProcessor",
+              "ui_data": {
+                "label": "combine weather with journeys",
+                "image": "/images/svg/sqlProcessor.svg",
+                "x_pos": 912.9351737731628,
+                "y_pos": 207.84151018007805
+              }
+            },
+            "inputs": [
+              {
+                "id": "inPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Input Port"
+                  }
+                },
+                "links": [
+                  {
+                    "id": "1e2e2f44-0edb-4ef7-bf07-5a6fbde0375c",
+                    "node_id_ref": "7bbe4eac-f2af-443f-9fb3-b794ead7349a",
+                    "port_id_ref": "outPort"
+                  },
+                  {
+                    "id": "e8918b71-b033-4d80-a883-6a4cf0496af0",
+                    "node_id_ref": "f5bd732d-ab2b-4f14-80e8-9e96eb15e777",
+                    "port_id_ref": "outPort"
+                  }
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "id": "outPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Output Port"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "3ddef6cb-9bd2-4291-b2c7-b9d4ba0627ab",
+            "type": "sqlProcessor",
+            "app_data": {
+              "node_type": "sqlProcessor",
+              "ui_data": {
+                "label": "collect history",
+                "image": "/images/svg/sqlProcessor.svg",
+                "x_pos": 1010.6865844726562,
+                "y_pos": 285.250244140625
+              }
+            },
+            "inputs": [
+              {
+                "id": "inPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Input Port"
+                  }
+                },
+                "links": [
+                  {
+                    "id": "4a68193b-f185-45b1-95ec-4fa1a449e5a8",
+                    "node_id_ref": "6f0facd7-0a63-4b6a-8ab9-058b6a8a23c6",
+                    "port_id_ref": "outPort"
+                  }
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "id": "outPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Output Port"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "7bbe4eac-f2af-443f-9fb3-b794ead7349a",
+            "type": "sqlProcessor",
+            "app_data": {
+              "node_type": "sqlProcessor",
+              "ui_data": {
+                "label": "windowed weather",
+                "image": "/images/svg/sqlProcessor.svg",
+                "x_pos": 579.0850830078125,
+                "y_pos": 174.535888671875
+              }
+            },
+            "inputs": [
+              {
+                "id": "inPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Input Port"
+                  }
+                },
+                "links": [
+                  {
+                    "id": "66bbad36-9287-459f-8a2c-21a6ee5b4434",
+                    "node_id_ref": "38bb788e-2f33-4800-9210-0a11c3327210",
+                    "port_id_ref": "outPort"
+                  }
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "id": "outPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Output Port"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "40fd907d-7412-41bb-bd2f-9375194823ae",
+            "type": "transform",
+            "app_data": {
+              "node_type": "transform",
+              "ui_data": {
+                "label": "update time",
+                "image": "/images/svg/transform.svg",
+                "x_pos": 564.3843383789062,
+                "y_pos": 482.0716247558594
+              }
+            },
+            "inputs": [
+              {
+                "id": "inPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": 1
+                    },
+                    "label": "Input Port"
+                  }
+                },
+                "links": [
+                  {
+                    "id": "b088ed7b-bbbd-4ac1-a22a-947cde710cd9",
+                    "node_id_ref": "3ddef6cb-9bd2-4291-b2c7-b9d4ba0627ab",
+                    "port_id_ref": "outPort"
+                  }
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "id": "outPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Output Port"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "a067b183-2181-4e84-a4cf-17ee99877ee1",
+            "type": "api",
+            "app_data": {
+              "node_type": "api",
+              "ui_data": {
+                "label": "granite timeseries forecast",
+                "image": "/images/svg/api.svg",
+                "x_pos": 641.5092163085938,
+                "y_pos": 560.27685546875
+              }
+            },
+            "inputs": [
+              {
+                "id": "inPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": 1
+                    },
+                    "label": "Input Port"
+                  }
+                },
+                "links": [
+                  {
+                    "id": "88f80984-4823-49ad-8245-0d7a4cbff95c",
+                    "node_id_ref": "40fd907d-7412-41bb-bd2f-9375194823ae",
+                    "port_id_ref": "outPort"
+                  }
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "id": "outPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": -1
+                    },
+                    "label": "Output Port"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "00019190-13c1-4810-bd1a-48fa818be72f",
+            "type": "sqlSink",
+            "app_data": {
+              "node_type": "sqlSink",
+              "ui_data": {
+                "label": "forecasts",
+                "image": "/images/svg/sqlSink.svg",
+                "x_pos": 1044.0987548828125,
+                "y_pos": 560.27685546875
+              }
+            },
+            "inputs": [
+              {
+                "id": "inPort",
+                "app_data": {
+                  "ui_data": {
+                    "cardinality": {
+                      "min": 0,
+                      "max": 1
+                    },
+                    "label": "Input Port"
+                  }
+                },
+                "links": [
+                  {
+                    "id": "af63b4d8-8140-4f3a-a0b7-1d606e1e10c7",
+                    "node_id_ref": "a067b183-2181-4e84-a4cf-17ee99877ee1",
+                    "port_id_ref": "outPort"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "app_data": {
+          "ui_data": {
+            "comments": []
+          }
+        },
+        "runtime_ref": ""
+      }
+    ],
+    "schemas": []
+  },
+  "contextState": {
+    "edges": [
+      {
+        "incoming": "5ae23e2b-6c1f-47e2-b6e9-b5a1700f55d7",
+        "outgoing": "d061ae26-b72b-4eec-9c91-836e0789c363"
+      },
+      {
+        "incoming": "83b13b25-cd16-4a5d-a803-da243b772385",
+        "outgoing": "f5bd732d-ab2b-4f14-80e8-9e96eb15e777"
+      },
+      {
+        "incoming": "6f0facd7-0a63-4b6a-8ab9-058b6a8a23c6",
+        "outgoing": "3ddef6cb-9bd2-4291-b2c7-b9d4ba0627ab"
+      },
+      {
+        "incoming": "d061ae26-b72b-4eec-9c91-836e0789c363",
+        "outgoing": "206511cf-5051-4f86-ab3d-45822df62be5"
+      },
+      {
+        "incoming": "206511cf-5051-4f86-ab3d-45822df62be5",
+        "outgoing": "38bb788e-2f33-4800-9210-0a11c3327210"
+      },
+      {
+        "incoming": "38bb788e-2f33-4800-9210-0a11c3327210",
+        "outgoing": "7bbe4eac-f2af-443f-9fb3-b794ead7349a"
+      },
+      {
+        "incoming": "7bbe4eac-f2af-443f-9fb3-b794ead7349a",
+        "outgoing": "6f0facd7-0a63-4b6a-8ab9-058b6a8a23c6"
+      },
+      {
+        "incoming": "f5bd732d-ab2b-4f14-80e8-9e96eb15e777",
+        "outgoing": "6f0facd7-0a63-4b6a-8ab9-058b6a8a23c6"
+      },
+      {
+        "incoming": "3ddef6cb-9bd2-4291-b2c7-b9d4ba0627ab",
+        "outgoing": "40fd907d-7412-41bb-bd2f-9375194823ae"
+      },
+      {
+        "incoming": "40fd907d-7412-41bb-bd2f-9375194823ae",
+        "outgoing": "a067b183-2181-4e84-a4cf-17ee99877ee1"
+      },
+      {
+        "incoming": "a067b183-2181-4e84-a4cf-17ee99877ee1",
+        "outgoing": "00019190-13c1-4810-bd1a-48fa818be72f"
+      }
+    ],
+    "nodes": [
+      {
+        "viewName": "weather forecasts",
+        "nodeId": "5ae23e2b-6c1f-47e2-b6e9-b5a1700f55d7",
+        "nodeType": "source",
+        "configuration": {
+          "bootstrapServers": [
+            "my-kafka-cluster-kafka-bootstrap.event-automation.svc:9095"
+          ],
+          "securityProtocol": "SASL_SSL",
+          "topic": "BIKESHARING.WEATHER",
+          "fields": [
+            {
+              "name": "temperature",
+              "selected": true,
+              "type": "ROW",
+              "fields": [
+                {
+                  "name": "reading",
+                  "selected": true,
+                  "type": "DOUBLE",
+                  "jsonType": "double",
+                  "tsFormat": "NONE"
+                },
+                {
+                  "name": "feelslike",
+                  "selected": true,
+                  "type": "DOUBLE",
+                  "jsonType": "double",
+                  "tsFormat": "NONE"
+                }
+              ]
+            },
+            {
+              "name": "type",
+              "selected": true,
+              "type": "ROW",
+              "fields": [
+                {
+                  "name": "description",
+                  "selected": true,
+                  "type": "STRING",
+                  "jsonType": "string",
+                  "tsFormat": "NONE"
+                },
+                {
+                  "name": "code",
+                  "selected": true,
+                  "type": "BIGINT",
+                  "jsonType": "bigint",
+                  "tsFormat": "NONE"
+                }
+              ]
+            },
+            {
+              "name": "humidity",
+              "selected": true,
+              "type": "BIGINT",
+              "jsonType": "bigint",
+              "tsFormat": "NONE"
+            },
+            {
+              "name": "windSpeed",
+              "selected": true,
+              "type": "BIGINT",
+              "jsonType": "bigint",
+              "tsFormat": "NONE"
+            },
+            {
+              "name": "time",
+              "selected": true,
+              "type": "TIMESTAMP_UDF",
+              "jsonType": "string",
+              "tsFormat": "TIMESTAMP_UDF"
+            }
+          ],
+          "watermark": {
+            "watermarkWithEventSource": true,
+            "topicLocalTimeRequired": false,
+            "timeUnit": "SECOND",
+            "interval": 3,
+            "watermarkColumn": "time"
+          },
+          "configureNewSource": true,
+          "topicIdForReuse": "configureNewSource",
+          "persistSourceTopic": false,
+          "isSourceEditable": true,
+          "format": "json",
+          "certificatesAccepted": false,
+          "credentials": {
+            "type": "SASL",
+            "data": {
+              "username": "kafka-demo-apps",
+              "password": "kafka-demo-apps-password",
+              "mechanism": "SCRAM-SHA-512"
+            }
+          },
+          "truststoreCertificates": [
+            {
+              "pem": "-----BEGIN CERTIFICATE-----\nkafka-trust-store-pem\n-----END CERTIFICATE-----\n"
+            }
+          ],
+          "topicPayload": "{\n  \"temperature\": {\n    \"reading\": 30.34,\n    \"feelslike\": 35.605\n  },\n  \"type\": {\n    \"description\": \"CLEAR\",\n    \"code\": 1\n  },\n  \"humidity\": 74,\n  \"windSpeed\": 0,\n  \"time\": \"2011-07-19 22:00:00.000\"\n}",
+          "hasSourcePersisted": true,
+          "startUpMode": "earliest-offset"
+        }
+      },
+      {
+        "viewName": "extract time info",
+        "nodeId": "d061ae26-b72b-4eec-9c91-836e0789c363",
+        "nodeType": "sqlProcessor",
+        "configuration": {
+          "statement": "-- ----------------------------------------------------------------------\n-- OVERVIEW:\n--\n--  Break apart the timestamp from the input events into separate\n--   properties (e.g. hour, day, month, year), as used by the\n--   predictive timeseries model.\n-- ----------------------------------------------------------------------\n\nCREATE TEMPORARY VIEW `extract time info` AS\n    SELECT\n        -- input properties\n        `temperature`,\n        `type`,\n        `humidity`,\n        `windSpeed`,\n        `time`,\n\n        -- extract numeric properties from the date\n        HOUR(`time`)                      AS `hr`,\n        DAYOFMONTH(`time`)                AS `day`,\n        MONTH(`time`)                     AS `mnth`,\n        YEAR(`time`) - 2011               AS `yr`,\n\n        -- string version of the date\n        DATE_FORMAT(`time`, 'yyyy-MM-dd') AS `dteday`\n\n    FROM\n        `weather forecasts`;"
+        }
+      },
+      {
+        "viewName": "normalize weather data",
+        "nodeId": "38bb788e-2f33-4800-9210-0a11c3327210",
+        "nodeType": "sqlProcessor",
+        "configuration": {
+          "statement": "-- ----------------------------------------------------------------------\n-- OVERVIEW:\n--\n--  The timeseries model uses a scaled version of weather data.\n--   This applies the scaling to the input weather readings.\n-- ----------------------------------------------------------------------\n\nCREATE TEMPORARY VIEW `normalize weather data` AS\n    SELECT\n        -- timestamp\n        `time`,\n\n        -- input time-related properties\n        `dteday`,\n        `yr`,\n        `mnth`,\n        `hr`,\n        `holiday`,\n        `workingday`,\n\n\t\t-- convert the day-of-week to the format expected by the model\n        DAYOFWEEK(`time`) - 1          AS `weekday`,\n\n        -- use the date properties to decide what season the day is in\n        CASE\n            WHEN (`mnth` = 3 AND `day` >= 21) OR\n                (`mnth` IN (4, 5)) OR\n                (`mnth` = 6 AND `day` <= 20)\n                THEN 2\n            WHEN (`mnth` = 6 AND `day` >= 21) OR\n                (`mnth` IN (7, 8)) OR\n                (`mnth` = 9 AND `day` <= 22)\n                THEN 3\n            WHEN (`mnth` = 9 AND `day` >= 23) OR\n                (`mnth` IN (10, 11)) OR\n                (`mnth` = 12 AND `day` <= 20)\n                THEN 4\n            ELSE 1\n        END                            AS `season`,       \n\n        -- weather data - renamed and normalized to meet model requirements\n        type.code                      AS `weathersit`,\n        temperature.reading / 41       AS `temp`,\n        temperature.feelslike / 50     AS `atemp`,\n        CAST(humidity AS DOUBLE) / 100 AS `hum`,\n        windSpeed / 67                 AS `windspeed`\n    FROM\n        `lookup holiday info`;"
+        }
+      },
+      {
+        "viewName": "lookup holiday info",
+        "nodeId": "206511cf-5051-4f86-ab3d-45822df62be5",
+        "nodeType": "sqlProcessor",
+        "configuration": {
+          "statement": "CREATE TEMPORARY TABLE `bikesharingcalendar_database`\n(\n    `day`                          INT,\n    `mnth`                         INT,\n    `yr`                           INT,\n    `originalyear`                 INT,\n    `holiday`                      INT,\n    `weekday`                      INT,\n    `workingday`                   INT\n)\nWITH (\n    'password' = 'pgsql-demouser-password',\n    'connector' = 'jdbc',\n    'table-name' = 'bikesharingcalendar',\n    'url' = 'jdbc:postgresql://pgsqldemo-primary.event-automation.svc:5432/pgsqldemo',\n    'username' = 'demouser',\n\n    'lookup.cache' = 'PARTIAL',\n    'lookup.partial-cache.max-rows' = '7'\n);\n\n\nCREATE TEMPORARY VIEW `extract time info with proctime` AS\n    SELECT\n        *,\n        PROCTIME() AS `proc_time`\n    FROM\n        `extract time info`;\n\n\nCREATE TEMPORARY VIEW `lookup holiday info` AS\n    SELECT\n        -- time properties from the events\n        `extract time info with proctime`.`dteday`      AS `dteday`,\n        `extract time info with proctime`.`time`        AS `time`,\n        `extract time info with proctime`.`hr`          AS `hr`,\n        `extract time info with proctime`.`day`         AS `day`,\n        `extract time info with proctime`.`mnth`        AS `mnth`,\n        `extract time info with proctime`.`yr`          AS `yr`,\n        -- weather info from the events\n        `extract time info with proctime`.`temperature` AS `temperature`,\n        `extract time info with proctime`.`type`        AS `type`,\n        `extract time info with proctime`.`humidity`    AS `humidity`,\n        `extract time info with proctime`.`windSpeed`   AS `windSpeed`,\n        -- data looked up from the database\n        `bikesharingcalendar_database`.`holiday`        AS `holiday`,\n        `bikesharingcalendar_database`.`workingday`     AS `workingday`\n\n    FROM\n        `extract time info with proctime`\n    LEFT JOIN\n        `bikesharingcalendar_database`\n            FOR SYSTEM_TIME AS OF `extract time info with proctime`.`proc_time`\n        ON\n            CAST(`extract time info with proctime`.`day` AS INTEGER)  = `bikesharingcalendar_database`.`day`\n                AND\n            CAST(`extract time info with proctime`.`mnth` AS INTEGER) = `bikesharingcalendar_database`.`mnth`\n                AND\n            0  = `bikesharingcalendar_database`.`yr`;\n"
+        }
+      },
+      {
+        "viewName": "bike location updates",
+        "nodeId": "83b13b25-cd16-4a5d-a803-da243b772385",
+        "nodeType": "source",
+        "configuration": {
+          "bootstrapServers": [
+            "my-kafka-cluster-kafka-bootstrap.event-automation.svc:9095"
+          ],
+          "securityProtocol": "SASL_SSL",
+          "topic": "BIKESHARING.LOCATION",
+          "fields": [
+            {
+              "name": "journeyid",
+              "selected": true,
+              "type": "STRING",
+              "jsonType": "string",
+              "tsFormat": "NONE"
+            },
+            {
+              "name": "bikeid",
+              "selected": true,
+              "type": "STRING",
+              "jsonType": "string",
+              "tsFormat": "NONE"
+            },
+            {
+              "name": "usertype",
+              "selected": true,
+              "type": "STRING",
+              "jsonType": "string",
+              "tsFormat": "NONE"
+            },
+            {
+              "name": "location",
+              "selected": true,
+              "type": "ROW",
+              "fields": [
+                {
+                  "name": "latitude",
+                  "selected": true,
+                  "type": "DOUBLE",
+                  "jsonType": "double",
+                  "tsFormat": "NONE"
+                },
+                {
+                  "name": "longitude",
+                  "selected": true,
+                  "type": "DOUBLE",
+                  "jsonType": "double",
+                  "tsFormat": "NONE"
+                }
+              ]
+            },
+            {
+              "name": "battery",
+              "selected": true,
+              "type": "BIGINT",
+              "jsonType": "bigint",
+              "tsFormat": "NONE"
+            },
+            {
+              "name": "time",
+              "selected": true,
+              "type": "TIMESTAMP_UDF",
+              "jsonType": "string",
+              "tsFormat": "TIMESTAMP_UDF"
+            }
+          ],
+          "watermark": {
+            "watermarkWithEventSource": true,
+            "topicLocalTimeRequired": false,
+            "timeUnit": "SECOND",
+            "interval": 3,
+            "watermarkColumn": "time"
+          },
+          "configureNewSource": true,
+          "topicIdForReuse": "configureNewSource",
+          "persistSourceTopic": false,
+          "isSourceEditable": true,
+          "format": "json",
+          "certificatesAccepted": false,
+          "credentials": {
+            "type": "SASL",
+            "data": {
+              "username": "kafka-demo-apps",
+              "password": "kafka-demo-apps-password",
+              "mechanism": "SCRAM-SHA-512"
+            }
+          },
+          "truststoreCertificates": [
+            {
+              "pem": "-----BEGIN CERTIFICATE-----\nkafka-trust-store-pem\n-----END CERTIFICATE-----\n"
+            }
+          ],
+          "topicPayload": "{\n  \"journeyid\": \"a2f1a342-093a-4ce0-b3ea-4a8c3883a850\",\n  \"bikeid\": \"DY\",\n  \"usertype\": \"REGISTERED\",\n  \"location\": {\n    \"latitude\": 51.51914,\n    \"longitude\": -0.18347\n  },\n  \"battery\": 97,\n  \"time\": \"2011-07-19 22:05:00.000\"\n}",
+          "hasSourcePersisted": true,
+          "startUpMode": "earliest-offset"
+        }
+      },
+      {
+        "viewName": "count journeys per hour",
+        "nodeId": "f5bd732d-ab2b-4f14-80e8-9e96eb15e777",
+        "nodeType": "sqlProcessor",
+        "configuration": {
+          "statement": "-- ----------------------------------------------------------------------\n-- OVERVIEW:\n--\n--  Journeys are represented as multiple events - capturing the location\n--   of the bike at various points during the journey.\n--\n--   This counts the number of unique journey IDs in each hour to\n--    provide a high-level per-hour summary of journey activity.\n-- ----------------------------------------------------------------------\n-- THE OUTPUT FROM THIS NODE IS:\n--\n--  window_start\n--  window_end\n--  window_time\n--  casual        (NULL or the number of journeys in the hour starting from `hour` where usertype=CASUAL)\n--  registered    (NULL or the number of journeys in the hour starting from `hour` where usertype=REGISTERED)\n--  heartbeat     (NULL or the number of journeys in the hour starting from `hour` where usertype=HEARTBEAT)\n-- ----------------------------------------------------------------------\n\nCREATE TEMPORARY VIEW `count journeys per hour` AS\n        SELECT\n            `window_start`,\n            `window_end`,\n            `window_time`,\n\n            COUNT(DISTINCT CASE WHEN `usertype` = 'CASUAL'     THEN `journeyid` END) AS casual,\n            COUNT(DISTINCT CASE WHEN `usertype` = 'REGISTERED' THEN `journeyid` END) AS registered,\n\n            -- HEARTBEAT doesn't represent real journey data - these are emitted at the start of every\n            --  hour to ensure that there is not a delay in closing the tumbling window if there are\n            --  no other journey events at the start of an hour\n            COUNT(DISTINCT CASE WHEN `usertype` = 'HEARTBEAT'  THEN `journeyid` END) AS heartbeat\n        FROM\n            TABLE (\n                TUMBLE( TABLE `bike location updates`,\n                        DESCRIPTOR(`time`),\n                        INTERVAL '1' HOUR )\n            )\n        GROUP BY\n            `window_start`,\n            `window_end`,\n            `window_time`;"
+        }
+      },
+      {
+        "viewName": "combine weather with journeys",
+        "nodeId": "6f0facd7-0a63-4b6a-8ab9-058b6a8a23c6",
+        "nodeType": "sqlProcessor",
+        "configuration": {
+          "statement": "CREATE TEMPORARY VIEW `combine weather with journeys` AS \n    SELECT\n    \t--\n        `windowed weather`.`time` AS `time`,\n        `windowed weather`.`dteday` AS `dteday`,\n        `windowed weather`.`season` AS `season`,\n        `windowed weather`.`yr`  AS `yr`,\n        `windowed weather`.`mnth` AS `mnth`,\n        `windowed weather`.`hr`  AS `hr`,\n        `windowed weather`.`holiday` AS `holiday`,\n        `windowed weather`.`weekday` AS `weekday`,\n        `windowed weather`.`workingday` AS `workingday`,\n        `windowed weather`.`weathersit` AS `weathersit`,\n        `windowed weather`.`temp` AS `temp`,\n        `windowed weather`.`atemp` AS `atemp`,\n        `windowed weather`.`hum` AS `hum`,\n        `windowed weather`.`windspeed` AS `windspeed`,\n        \n        --\n        `count journeys per hour`.window_start AS journeys_window_start,\n        `count journeys per hour`.window_end AS journeys_window_end,\n        `count journeys per hour`.window_time AS journeys_window_time,\n        COALESCE( `count journeys per hour`.`casual`, 0 ) AS `casual`,\n        COALESCE( `count journeys per hour`.`registered`, 0 ) AS `registered`\n\n\tFROM \n        `count journeys per hour` \n        \n    JOIN \n        `windowed weather` \n        \n    ON \n        `windowed weather`.`window_start` = `count journeys per hour`.`window_start`\n            AND \n        `windowed weather`.`window_end` = `count journeys per hour`.`window_end`;\n"
+        }
+      },
+      {
+        "viewName": "collect history",
+        "nodeId": "3ddef6cb-9bd2-4291-b2c7-b9d4ba0627ab",
+        "nodeType": "sqlProcessor",
+        "configuration": {
+          "statement": "CREATE TEMPORARY VIEW `collect history` AS\n    SELECT\n    \tMAX(`time`) AS `time`,\n        ARRAY_AGG(\n            CAST(\n                ROW(`dteday`, `season`,\n                        `yr`, `mnth`, `hr`,\n                        `holiday`, `weekday`, `workingday`,\n                        `weathersit`, `temp`, `atemp`, `hum`, `windspeed`,\n                        `casual`, `registered`)\n                    AS\n                ROW<`dteday` STRING, `season` INT,\n                        `yr` INT, `mnth` INT, `hr` INT,\n                        `holiday` INT, `weekday` INT, `workingday` INT,\n                        `weathersit` INT, `temp` DOUBLE, `atemp` DOUBLE, `hum` DOUBLE, `windspeed` DOUBLE,\n                        `casual` INT, `registered` INT>\n            )\n        ) AS `history`\n    FROM TABLE (\n        HOP( TABLE `combine weather with journeys`,\n                DESCRIPTOR(`journeys_window_time`),\n                INTERVAL '1' HOUR,\n                INTERVAL '4' DAYS )\n    )\n    GROUP BY\n        `window_start`,\n        `window_end`,\n        `window_time`;"
+        }
+      },
+      {
+        "viewName": "windowed weather",
+        "nodeId": "7bbe4eac-f2af-443f-9fb3-b794ead7349a",
+        "nodeType": "sqlProcessor",
+        "configuration": {
+          "statement": "CREATE TEMPORARY VIEW `windowed weather` AS\n\tSELECT\n    \t*\n\tFROM \n    \tTABLE (\n    \t\tTUMBLE( TABLE `normalize weather data`, \n            \t\tDESCRIPTOR(`time`), \n                    INTERVAL '1' HOUR )\n\t\t);"
+        }
+      },
+      {
+        "viewName": "update time",
+        "nodeId": "40fd907d-7412-41bb-bd2f-9375194823ae",
+        "nodeType": "transform",
+        "configuration": {
+          "columns": [
+            {
+              "outputColumn": "history",
+              "input": {
+                "column": "history"
+              },
+              "outputType": "ARRAY",
+              "items": {
+                "fields": [
+                  {
+                    "outputColumn": "dteday",
+                    "input": {
+                      "column": "dteday"
+                    },
+                    "outputType": "STRING"
+                  },
+                  {
+                    "outputColumn": "season",
+                    "input": {
+                      "column": "season"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "yr",
+                    "input": {
+                      "column": "yr"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "mnth",
+                    "input": {
+                      "column": "mnth"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "hr",
+                    "input": {
+                      "column": "hr"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "holiday",
+                    "input": {
+                      "column": "holiday"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "weekday",
+                    "input": {
+                      "column": "weekday"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "workingday",
+                    "input": {
+                      "column": "workingday"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "weathersit",
+                    "input": {
+                      "column": "weathersit"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "temp",
+                    "input": {
+                      "column": "temp"
+                    },
+                    "outputType": "DOUBLE"
+                  },
+                  {
+                    "outputColumn": "atemp",
+                    "input": {
+                      "column": "atemp"
+                    },
+                    "outputType": "DOUBLE"
+                  },
+                  {
+                    "outputColumn": "hum",
+                    "input": {
+                      "column": "hum"
+                    },
+                    "outputType": "DOUBLE"
+                  },
+                  {
+                    "outputColumn": "windspeed",
+                    "input": {
+                      "column": "windspeed"
+                    },
+                    "outputType": "DOUBLE"
+                  },
+                  {
+                    "outputColumn": "casual",
+                    "input": {
+                      "column": "casual"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "registered",
+                    "input": {
+                      "column": "registered"
+                    },
+                    "outputType": "INTEGER"
+                  }
+                ],
+                "outputType": "ROW"
+              }
+            },
+            {
+              "outputColumn": "time",
+              "input": {
+                "column": ""
+              },
+              "expression": "TIMESTAMPADD(HOUR, 1, `time`)"
+            }
+          ]
+        }
+      },
+      {
+        "viewName": "granite timeseries forecast",
+        "nodeId": "a067b183-2181-4e84-a4cf-17ee99877ee1",
+        "nodeType": "api",
+        "configuration": {
+          "info": {
+            "openapiVersion": "V30",
+            "apiVersion": "1.0.0",
+            "title": "Forecast API",
+            "description": "API to forecast user activity based on historical data."
+          },
+          "servers": [
+            {
+              "url": "http://timeseries:5000",
+              "variables": []
+            }
+          ],
+          "operations": [
+            {
+              "path": "/forecast",
+              "lookupMethod": "POST",
+              "requestBodyParameters": {
+                "required": true,
+                "parameters": [
+                  {
+                    "name": "history",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": [
+                        {
+                          "name": "hum",
+                          "type": "number",
+                          "required": false
+                        },
+                        {
+                          "name": "temp",
+                          "type": "number",
+                          "required": false
+                        },
+                        {
+                          "name": "mnth",
+                          "type": "integer",
+                          "required": false
+                        },
+                        {
+                          "name": "weekday",
+                          "type": "integer",
+                          "required": false
+                        },
+                        {
+                          "name": "registered",
+                          "type": "integer",
+                          "required": false
+                        },
+                        {
+                          "name": "hr",
+                          "type": "integer",
+                          "required": false
+                        },
+                        {
+                          "name": "holiday",
+                          "type": "integer",
+                          "required": false
+                        },
+                        {
+                          "name": "weathersit",
+                          "type": "integer",
+                          "required": false
+                        },
+                        {
+                          "name": "workingday",
+                          "type": "integer",
+                          "required": false
+                        },
+                        {
+                          "name": "dteday",
+                          "type": "string",
+                          "required": false
+                        },
+                        {
+                          "name": "casual",
+                          "type": "integer",
+                          "required": false
+                        },
+                        {
+                          "name": "atemp",
+                          "type": "number",
+                          "required": false
+                        },
+                        {
+                          "name": "season",
+                          "type": "integer",
+                          "required": false
+                        },
+                        {
+                          "name": "yr",
+                          "type": "integer",
+                          "required": false
+                        },
+                        {
+                          "name": "windspeed",
+                          "type": "number",
+                          "required": false
+                        }
+                      ]
+                    },
+                    "required": false,
+                    "input": {
+                      "kind": "column",
+                      "value": "`history`"
+                    }
+                  }
+                ]
+              },
+              "requestParameters": [],
+              "responseParameters": [
+                {
+                  "name": "forecast",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": [
+                      {
+                        "name": "casual",
+                        "type": "number"
+                      },
+                      {
+                        "name": "cnt",
+                        "type": "number"
+                      },
+                      {
+                        "name": "registered",
+                        "type": "number"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "securityMethods": [
+                {
+                  "type": "none",
+                  "usedForApiEnrichment": true
+                }
+              ],
+              "usedForApiEnrichment": true
+            }
+          ],
+          "columns": [
+            {
+              "outputColumn": "time",
+              "input": {
+                "column": "time",
+                "table": "update time"
+              }
+            },
+            {
+              "outputColumn": "history",
+              "input": {
+                "column": "history",
+                "table": "update time"
+              },
+              "outputType": "ARRAY",
+              "items": {
+                "fields": [
+                  {
+                    "outputColumn": "dteday",
+                    "input": {
+                      "column": "dteday"
+                    },
+                    "outputType": "STRING"
+                  },
+                  {
+                    "outputColumn": "season",
+                    "input": {
+                      "column": "season"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "yr",
+                    "input": {
+                      "column": "yr"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "mnth",
+                    "input": {
+                      "column": "mnth"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "hr",
+                    "input": {
+                      "column": "hr"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "holiday",
+                    "input": {
+                      "column": "holiday"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "weekday",
+                    "input": {
+                      "column": "weekday"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "workingday",
+                    "input": {
+                      "column": "workingday"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "weathersit",
+                    "input": {
+                      "column": "weathersit"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "temp",
+                    "input": {
+                      "column": "temp"
+                    },
+                    "outputType": "DOUBLE"
+                  },
+                  {
+                    "outputColumn": "atemp",
+                    "input": {
+                      "column": "atemp"
+                    },
+                    "outputType": "DOUBLE"
+                  },
+                  {
+                    "outputColumn": "hum",
+                    "input": {
+                      "column": "hum"
+                    },
+                    "outputType": "DOUBLE"
+                  },
+                  {
+                    "outputColumn": "windspeed",
+                    "input": {
+                      "column": "windspeed"
+                    },
+                    "outputType": "DOUBLE"
+                  },
+                  {
+                    "outputColumn": "casual",
+                    "input": {
+                      "column": "casual"
+                    },
+                    "outputType": "INTEGER"
+                  },
+                  {
+                    "outputColumn": "registered",
+                    "input": {
+                      "column": "registered"
+                    },
+                    "outputType": "INTEGER"
+                  }
+                ],
+                "outputType": "ROW"
+              }
+            },
+            {
+              "outputColumn": "forecast",
+              "input": {
+                "column": "response_forecast",
+                "table": "granite timeseries forecast_lookup__API"
+              },
+              "outputType": "ARRAY",
+              "items": {
+                "fields": [
+                  {
+                    "outputColumn": "casual",
+                    "input": {
+                      "column": "casual"
+                    },
+                    "outputType": "DOUBLE"
+                  },
+                  {
+                    "outputColumn": "cnt",
+                    "input": {
+                      "column": "cnt"
+                    },
+                    "outputType": "DOUBLE"
+                  },
+                  {
+                    "outputColumn": "registered",
+                    "input": {
+                      "column": "registered"
+                    },
+                    "outputType": "DOUBLE"
+                  }
+                ],
+                "outputType": "ROW"
+              }
+            }
+          ],
+          "configuredUrl": "http://timeseries:5000"
+        }
+      },
+      {
+        "viewName": "forecasts",
+        "nodeId": "00019190-13c1-4810-bd1a-48fa818be72f",
+        "nodeType": "sqlSink",
+        "configuration": {
+          "statement": "CREATE TABLE `forecasts`\n(\n    `time`                         TIMESTAMP(9) METADATA FROM 'timestamp',\n    `history`                      ARRAY<ROW<`dteday` STRING, `season` INT, `yr` INT, `mnth` INT, `hr` INT, `holiday` INT, `weekday` INT, `workingday` INT, `weathersit` INT, `temp` DOUBLE, `atemp` DOUBLE, `hum` DOUBLE, `windspeed` DOUBLE, `casual` INT, `registered` INT>>,\n    `forecast`                     ARRAY<ROW<`casual` DOUBLE, `cnt` DOUBLE, `registered` DOUBLE>>\n)\nWITH (\n    'properties.bootstrap.servers' = 'my-kafka-cluster-kafka-bootstrap.event-automation.svc:9095',\n    'properties.tls.pemChainIncluded' = 'false',\n    'properties.sasl.jaas.config' = 'org.apache.kafka.common.security.scram.ScramLoginModule required username=\"kafka-demo-apps\" password=\"kafka-demo-apps-password\";',\n    'properties.ssl.truststore.certificates' = '-----BEGIN CERTIFICATE-----\nkafka-trust-store-pem\n-----END CERTIFICATE-----\n',\n    'connector' = 'kafka',\n    'properties.ssl.endpoint.identification.algorithm' = '',\n    'properties.sasl.mechanism' = 'SCRAM-SHA-512',\n    'properties.ssl.truststore.type' = 'PEM',\n    'format' = 'json',\n    'topic' = 'BIKESHARING.PREDICTIONS',\n    'properties.security.protocol' = 'SASL_SSL'\n);"
+        }
+      }
+    ]
+  },
+  "flowDetails": {
+    "flowName": "bike hire forecasts",
+    "flowDescription": "predicting the bikes needed for the next few hours, based on recent usage",
+    "flowVersion": 9
+  }
+}

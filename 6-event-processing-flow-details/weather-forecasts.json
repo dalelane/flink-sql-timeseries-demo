@@ -1,0 +1,13 @@
+{
+  "temperature": {
+    "reading": 30.34,
+    "feelslike": 35.605
+  },
+  "type": {
+    "description": "CLEAR",
+    "code": 1
+  },
+  "humidity": 74,
+  "windSpeed": 0,
+  "time": "2011-07-19 22:00:00.000"
+}

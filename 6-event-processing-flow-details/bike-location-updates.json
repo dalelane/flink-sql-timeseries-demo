@@ -1,0 +1,11 @@
+{
+  "journeyid": "a2f1a342-093a-4ce0-b3ea-4a8c3883a850",
+  "bikeid": "DY",
+  "usertype": "REGISTERED",
+  "location": {
+    "latitude": 51.51914,
+    "longitude": -0.18347
+  },
+  "battery": 97,
+  "time": "2011-07-19 22:05:14.846"
+}
