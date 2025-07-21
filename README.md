@@ -1,6 +1,8 @@
 # Using a time series model with Apache Kafka and Apache Flink using IBM Event Automation
 
-An example project illustrating how a time series model can be invoked from a Flink SQL job, showing how to set this up using IBM Event Automation.
+An example project illustrating how a time series model can be invoked from a Flink SQL job, with instructions for how to set this up using IBM Event Automation.
+
+![diagram](./diagram.png)
 
 ## Contents
 
