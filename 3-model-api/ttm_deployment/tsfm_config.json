@@ -1,0 +1,14 @@
+{
+  "inference_handler_class_name": "TinyTimeMixerForecastingInferenceHandler",
+  "inference_handler_module_path": "tsfminference.tsfm_inference_handler",
+  "is_finetuned": true,
+  "maximum_context_length": 512,
+  "maximum_prediction_length": 96,
+  "minimum_context_length": 512,
+  "model_class_name": "TinyTimeMixerForPrediction",
+  "model_config_name": "TinyTimeMixerConfig",
+  "model_type": "tinytimemixer",
+  "module_path": "tsfm_public.models.tinytimemixer.modeling_tinytimemixer",
+  "tuning_handler_class_name": "TinyTimeMixerForecastingTuningHandler",
+  "tuning_handler_module_path": "tsfmfinetuning.tsfm_tuning_handler"
+}

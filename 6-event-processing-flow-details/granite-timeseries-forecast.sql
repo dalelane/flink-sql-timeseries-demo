@@ -1,3 +1,17 @@
+-- ----------------------------------------------------------------------
+-- OVERVIEW:
+--
+--  Submit the recent history of bike journeys to the time series model
+--   and receive the forecast for the predicted number of journeys in the
+--   next four days.
+--
+--  The time series model is hosted in a custom Python docker image that
+--   is a simplified representation of hosting a custom model in watsonx.ai
+--
+--  The model is invoked by a REST API using the flink-http-connector
+--   from https://github.com/getindata/flink-http-connector
+-- ----------------------------------------------------------------------
+
 CREATE TEMPORARY VIEW `granite timeseries forecast_update time__API` AS
     SELECT
         *,

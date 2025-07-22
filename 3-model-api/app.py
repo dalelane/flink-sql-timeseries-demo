@@ -32,15 +32,13 @@ all_columns = [
 ]
 timestamp_column = "dteday"
 target_columns = [ "casual", "registered", "cnt" ]
-context_length = 512
-prediction_length = 96
 batch_size = 64
 
 
 # called once at startup to load the saved fine-tuned timeseries model
 def init_timeseries_model():
-    loaded_tsp = TimeSeriesPreprocessor.from_pretrained("model")
-    loaded_model = TinyTimeMixerForPrediction.from_pretrained("model")
+    loaded_tsp = TimeSeriesPreprocessor.from_pretrained("ttm_deployment")
+    loaded_model = TinyTimeMixerForPrediction.from_pretrained("ttm_deployment")
     return TimeSeriesForecastingPipeline(
         loaded_model,
         device="cpu",

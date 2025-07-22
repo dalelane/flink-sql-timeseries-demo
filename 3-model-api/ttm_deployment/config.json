@@ -74,7 +74,7 @@
   "self_attn_heads": 1,
   "stride_ratio": 1,
   "torch_dtype": "float32",
-  "transformers_version": "4.50.0",
+  "transformers_version": "4.53.2",
   "use_decoder": true,
   "use_positional_encoding": false
 }

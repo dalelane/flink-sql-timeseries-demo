@@ -1,3 +1,12 @@
+-- ----------------------------------------------------------------------
+-- OVERVIEW:
+--
+--  Enrich the events so that dates in the events are supplemented with
+--   additional information about the date from a holidays database.
+--   This will identify whether the date is a public holiday and if it
+--   was a working day or not.
+-- ----------------------------------------------------------------------
+
 CREATE TEMPORARY TABLE `bikesharingcalendar_database`
 (
     `day`                          INT,

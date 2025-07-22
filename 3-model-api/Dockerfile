@@ -4,13 +4,13 @@ FROM --platform=linux/amd64 python:3.12-slim
 # Set the working directory in the container
 WORKDIR /app
 
+# Install any needed packages specified in requirements.txt
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
 # Copy the current directory contents into the container at /app
 COPY app.py app.py
-COPY requirements.txt requirements.txt
-COPY model model
-
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+COPY ttm_deployment ttm_deployment
 
 # Expose port 5000 for the Flask app
 EXPOSE 5000

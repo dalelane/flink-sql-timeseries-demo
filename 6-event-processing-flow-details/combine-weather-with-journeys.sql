@@ -1,3 +1,10 @@
+-- ----------------------------------------------------------------------
+-- OVERVIEW:
+--
+--  Use a JOIN to correlate the weather forecasts with the number of
+--   journeys taken during the time window that the forecast covered.
+-- ----------------------------------------------------------------------
+
 CREATE TEMPORARY VIEW `combine weather with journeys` AS
     SELECT
         --
@@ -20,6 +27,7 @@ CREATE TEMPORARY VIEW `combine weather with journeys` AS
         `count journeys per hour`.window_start AS journeys_window_start,
         `count journeys per hour`.window_end AS journeys_window_end,
         `count journeys per hour`.window_time AS journeys_window_time,
+        -- provide a default count of 0 if there were no journeys during the time period
         COALESCE( `count journeys per hour`.`casual`, 0 ) AS `casual`,
         COALESCE( `count journeys per hour`.`registered`, 0 ) AS `registered`
 
